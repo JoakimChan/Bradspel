@@ -4,10 +4,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>start meny</title>
+  <link rel="stylesheet" href="mainStyle.css">
+  <script type="module" src="register.js"></script>
 </head>
 
 <body>
+  <header>
+    <h1>Välkommer till Joakim's brädspel</h1>
+  </header>
+  <div class="register-form" id="register-form">
+    <h3>Register new player</h3>
+    <form>
+      <input type="text" id="player-name" placeholder="Name" required />
+      <button id="register">Register</button>
+    </form>
+  </div>
+  <hr>
+  <div>
+    <button class="player-list" id="player-list">View player</button>
+  </div>
 
 </body>
 
