@@ -1,3 +1,4 @@
+import fs from 'fs'
 const playerArray = []
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -24,8 +25,6 @@ function register() {
 
 function fetchData() {
   console.log('2')
-  const fs = require("fs");
-
   const jsonSting = fs.readFileSync("playerList.json");
   const data = JSON.parse(jsonSting)
 
@@ -44,8 +43,6 @@ function checkForNameExist(name) {
 
 
 function writeToJson() {
-  const fs = require("fs");
-
   fs.writeFileSync('./playerList.json', JSON.stringify(playerArray, null, 2), (err) => {
     if (err) throw err;
     console.log('data writen to file')

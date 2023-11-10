@@ -18,7 +18,7 @@ const winningMessageElement = document.getElementById('winning-message')
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
 const resetButton = document.getElementById('restart-button')
 let whoTurn;
-const markArray = [];
+let markArray = [];
 
 startGame();
 
@@ -43,6 +43,7 @@ function onClick(e) {
 
 function endGame() {
   winningMessageTextElement.innerText = `${whoTurn ? "O" : "X"} Wins!`
+  markArray = [];
   winningMessageElement.classList.add('show')
 }
 
@@ -50,7 +51,6 @@ function placeMarke(cell, currentClass) {
   markArray.push(cell)
   cell.classList.add(currentClass);
   if (checkWin(currentClass)) {
-    markArray = [];
     endGame()
   } else {
     swapTurns()
