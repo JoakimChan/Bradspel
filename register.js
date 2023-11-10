@@ -1,18 +1,20 @@
-import fs from 'fs'
-
 const playerArray = []
 
-const registerButtom = document.getElementById('register')
+document.addEventListener('DOMContentLoaded', () => {
+  const registerButtom = document.getElementById('register')
 
-registerButtom.addEventListener('click', register)
+  registerButtom.addEventListener('click', register)
+})
 
 function register() {
   console.log('1')
   fetchData()
-  const newPlayerName = document.getElementById('player-name')
+  const newPlayerName = document.getElementById('player-name').value
+  console.log('3')
   if (checkForNameExist(newPlayerName)) {
     alert("player already existed")
   } else {
+    console.log('5')
     const player = new NewPlayer(newPlayerName)
 
     playerArray.push(player.dataInfo())
@@ -22,6 +24,8 @@ function register() {
 
 function fetchData() {
   console.log('2')
+  const fs = require("fs");
+
   const jsonSting = fs.readFileSync("playerList.json");
   const data = JSON.parse(jsonSting)
 
@@ -31,15 +35,18 @@ function fetchData() {
 }
 
 function checkForNameExist(name) {
-  console.log('3')
+  console.log('4')
   if (playerArray.some(x => x.playerName = name)) {
     return true;
   }
   return false;
 }
 
+
 function writeToJson() {
-  fs.writeFileSync('./playerList.js', JSON.stringify(playerArray, null, 2), (err) => {
+  const fs = require("fs");
+
+  fs.writeFileSync('./playerList.json', JSON.stringify(playerArray, null, 2), (err) => {
     if (err) throw err;
     console.log('data writen to file')
   })

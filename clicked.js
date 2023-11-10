@@ -18,6 +18,7 @@ const winningMessageElement = document.getElementById('winning-message')
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
 const resetButton = document.getElementById('restart-button')
 let whoTurn;
+const markArray = [];
 
 startGame();
 
@@ -29,7 +30,7 @@ function startGame() {
     cell.classList.remove(X_CLASS)
     cell.classList.remove(O_CLASS)
     cell.removeEventListener('click', onClick)
-    cell.addEventListener('click', onClick, { once: true })
+    cell.addEventListener('click', onClick)
   })
   winningMessageElement.classList.remove('show')
 }
@@ -38,32 +39,26 @@ function onClick(e) {
   const cell = e.target
   const currentClass = whoTurn ? O_CLASS : X_CLASS;
   placeMarke(cell, currentClass)
-  if (checkWin(currentClass)) {
-    endGame(false)
-  } else if (isDraw()) {
-    endGame(true)
-  } else {
-    swapTurns()
-  }
 }
 
-function endGame(draw) {
-  if (draw) {
-    winningMessageTextElement.innerText = `Draw!`
-  } else {
-    winningMessageTextElement.innerText = `${whoTurn ? "O" : "X"} Wins!`
-  }
+function endGame() {
+  winningMessageTextElement.innerText = `${whoTurn ? "O" : "X"} Wins!`
   winningMessageElement.classList.add('show')
 }
 
-function isDraw() {
-  return [...cellElements].every(cell => {
-    return cell.classList.contains(X_CLASS) || cell.classList.contains(O_CLASS)
-  })
-}
-
 function placeMarke(cell, currentClass) {
+  markArray.push(cell)
   cell.classList.add(currentClass);
+  if (checkWin(currentClass)) {
+    markArray = [];
+    endGame()
+  } else {
+    swapTurns()
+    if (markArray.length > 6) {
+      const oldestMask = markArray.shift();
+      oldestMask.classList.remove(currentClass);
+    }
+  }
 }
 
 function swapTurns() {
