@@ -50,7 +50,7 @@ function onClick(e) {
 }
 
 function checkCellEmpty(cell) {
-  if (cell.classList.value == 'x' || cell.classList == 'o') {
+  if (cell.classList.contains("x") || cell.classList.contains("o")) {
     return false
   }
   return true
@@ -58,6 +58,7 @@ function checkCellEmpty(cell) {
 
 function endGame() {
   winningMessageTextElement.innerText = `${whoTurn ? "O" : "X"} Wins!`
+  ronds = 0
   markArray = [];
   winningMessageElement.classList.add('show')
 }
