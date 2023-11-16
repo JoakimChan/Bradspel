@@ -13,10 +13,12 @@ const winningCombination = [
   [0, 4, 8],
   [2, 4, 6]
 ]
+const rondText = document.getElementById('rond-text')
 const cellElements = document.querySelectorAll('[data-cell]')
 const winningMessageElement = document.getElementById('winning-message')
 const winningMessageTextElement = document.querySelector('[data-winning-message-text]')
 const resetButton = document.getElementById('restart-button')
+let ronds = 0;
 let whoTurn;
 let markArray = [];
 
@@ -38,7 +40,20 @@ function startGame() {
 function onClick(e) {
   const cell = e.target
   const currentClass = whoTurn ? O_CLASS : X_CLASS;
-  placeMarke(cell, currentClass)
+  if (checkCellEmpty(cell)) {
+    if (currentClass === X_CLASS) {
+      ronds++
+      rondText.innerHTML = `Rond: ${ronds}`
+    }
+    placeMarke(cell, currentClass)
+  }
+}
+
+function checkCellEmpty(cell) {
+  if (cell.classList.value == 'x' || cell.classList == 'o') {
+    return false
+  }
+  return true
 }
 
 function endGame() {

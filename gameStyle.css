@@ -24,7 +24,9 @@ body {
 }
 
 .cell.x::before,
-.cell.x::after {
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
   content: '';
   position: absolute;
   width: 15px;
@@ -32,28 +34,34 @@ body {
   background-color: black;
 }
 
-.cell.x::before {
+.cell.x::before,
+.board.x .cell:not(.x):not(.o):hover::before {
   transform: rotate(45deg);
 }
 
-.cell.x::after {
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::after {
   transform: rotate(-45deg);
 }
 
 .cell.o::before,
-.cell.o::after {
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after {
   content: '';
   position: absolute;
   border-radius: 50%;
 }
 
-.cell.o::before {
+.cell.o::before,
+.board.o .cell:not(.x):not(.o):hover::before {
   width: 90px;
   height: 90px;
   background-color: black;
 }
 
-.cell.o::after {
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::after {
   width: 65px;
   height: 65px;
   background-color: white;
