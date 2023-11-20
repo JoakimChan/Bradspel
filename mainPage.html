@@ -10,7 +10,13 @@
 
 <body>
   <header>
-    <h1>Välkommer till Joakim's brädspel</h1>
+    <nav>
+      <h1>Välkommer till Joakim's brädspel</h1>
+      <ul>
+        <li><a href="ticTikToe.html">Play game</a></li>
+        <li><a href="lederBoard.html">Players</a></li>
+      </ul>
+    </nav>
   </header>
   <div class="register-form" id="register-form">
     <h3>Register new player</h3>
@@ -18,12 +24,7 @@
       <input type="text" id="player-name" placeholder="Name" required />
       <button id="register">Register</button>
     </form>
-  </div>
-  <hr>
-  <div>
-    <button class="player-list" id="player-list">View player</button>
-  </div>
-  <script src="register.js" type="module"></script>
+    <script src="register.js" type="module"></script>
 </body>
 
 </html>
