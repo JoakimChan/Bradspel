@@ -1,9 +1,9 @@
 import { getAllUsers, addUser, getOneUser, updateUser } from "./json-request.js"
 
-const playerArray = []
+let playerArray = []
 const registerButton = document.getElementById('register')
 
-registerButton.addEventListener("click", register())
+registerButton.addEventListener("click", register)
 
 function register() {
   const newPlayerName = document.getElementById('player-name').value
@@ -15,8 +15,8 @@ function register() {
 }
 
 function checkForNameExist(name) {
-  playerArray = getAllUsers()
-  if (playerArray.some(x => x.name = name)) {
+  playerArray.push(getAllUsers())
+  if (playerArray.some(x => x.name == name)) {
     return true;
   }
   return false;
